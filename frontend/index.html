@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Task Priority Analyzer</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="page">
+    <header class="topbar">
+      <div class="brand">
+        <span class="logo-dot"></span>
+        <span class="brand-text">Task Priority Analyzer</span>
+      </div>
+      <span class="badge">Singularium Internship Assignment 2025</span>
+    </header>
+
+    <main class="layout">
+      <!-- LEFT: INPUT SECTION -->
+      <section class="card card-form">
+        <h2>Input Tasks</h2>
+        <p class="subtitle">
+          Add individual tasks or paste a JSON array for bulk analysis.
+        </p>
+
+        <!-- Single task form -->
+        <form id="taskForm" class="form-grid">
+          <label class="field">
+            <span>Description</span>
+            <textarea
+              id="description"
+              rows="3"
+              required
+              placeholder="e.g., Implement backend API for user authentication"
+            ></textarea>
+          </label>
+
+          <div class="field-row">
+            <label class="field">
+              <span>Deadline</span>
+              <input type="date" id="deadline" required />
+            </label>
+
+            <label class="field">
+              <span>Estimated Time (hours)</span>
+              <input type="number" id="estimated_time" min="1" required />
+            </label>
+          </div>
+
+          <div class="field-row">
+            <label class="field">
+              <span>Difficulty (1–3)</span>
+              <input type="number" id="difficulty" min="1" max="3" required />
+            </label>
+
+            <label class="field">
+              <span>Importance (1–3)</span>
+              <input type="number" id="importance" min="1" max="3" required />
+            </label>
+          </div>
+
+          <button type="submit" class="btn primary">
+            ⚡ Analyze Single Task
+          </button>
+        </form>
+
+        <!-- Bulk JSON input -->
+        <div class="bulk-section">
+          <div class="bulk-header">
+            <h3>Bulk JSON Input</h3>
+            <p class="subtitle">
+              Paste an array of tasks and click analyze. Example:
+            </p>
+          </div>
+
+          <pre class="example-block">
+[
+  {
+    "description": "Write documentation",
+    "deadline": "2025-12-01",
+    "difficulty": 1,
+    "importance": 2,
+    "estimated_time": 2
+  }
+]
+          </pre>
+
+          <textarea
+            id="bulkJson"
+            rows="6"
+            class="bulk-textarea"
+            placeholder='Paste JSON array of tasks here...'
+          ></textarea>
+          <button id="bulkAnalyzeBtn" class="btn ghost">
+            📦 Analyze Bulk Tasks
+          </button>
+          <p id="bulkError" class="hint error-text"></p>
+        </div>
+      </section>
+
+      <!-- RIGHT: OUTPUT SECTION -->
+      <section class="card card-results">
+        <div class="results-header">
+          <div>
+            <h2>Output & Strategy</h2>
+            <p class="subtitle">
+              Tasks are sorted based on the selected strategy.
+            </p>
+          </div>
+          <div class="strategy-picker">
+            <label>
+              <span>Strategy</span>
+              <select id="strategySelect">
+                <option value="smart">Smart Balance</option>
+                <option value="fastest">Fastest Wins</option>
+                <option value="impact">High Impact</option>
+                <option value="deadline">Deadline Driven</option>
+              </select>
+            </label>
+          </div>
+        </div>
+
+        <!-- Sorted tasks with explanations -->
+        <div id="result" class="result-panel empty">
+          <p class="hint">
+            Analyze one or more tasks to see sorted results, color-coded
+            priority, and explanations here.
+          </p>
+        </div>
+
+        <!-- Suggestions from backend -->
+        <div class="suggestion-header">
+          <div>
+            <h3>Top suggested tasks (API)</h3>
+            <p class="subtitle">Best tasks according to backend scores.</p>
+          </div>
+          <button id="loadSuggestions" class="btn ghost">
+            🔄 Refresh Suggestions
+          </button>
+        </div>
+
+        <div id="suggestions" class="suggestions-list">
+          <p class="hint">
+            Click “Refresh Suggestions” to load top tasks from the backend.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      Built with Django REST + Vanilla JS 
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
