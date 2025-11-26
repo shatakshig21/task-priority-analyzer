@@ -1,5 +1,5 @@
 # Task Priority Analyzer  
-Singularium Internship Assignment 2025
+
 
 A full-stack application that analyzes and prioritizes tasks using Django REST Framework (backend) and vanilla HTML/CSS/JavaScript (frontend).  
 The tool evaluates tasks based on importance, difficulty, and deadline closeness, and provides sorted results using multiple strategies.
