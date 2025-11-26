@@ -46,7 +46,7 @@ Frontend uses Fetch API to call backend.
 
 
 ------------------------------------------------------------
-# 2. Algorithm Explanation (≈350 words)
+# 2. Algorithm Explanation 
 ------------------------------------------------------------
 
 The priority algorithm is built to help users determine which tasks deserve immediate attention. Each task contains five fields: description, deadline, difficulty (1–3), importance (1–3), and estimated time. The algorithm evaluates tasks through a weighted scoring model designed to balance urgency, importance, and complexity.
